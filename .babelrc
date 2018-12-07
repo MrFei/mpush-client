@@ -1,0 +1,29 @@
+{
+  "presets": [
+    "react-app"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-proposal-class-properties",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "@components": "./src/components",
+          "@configs": "./src/configs",
+          "@models": "./src/models",
+          "@pages": "./src/pages",
+          "@utils": "./src/utils"
+        }
+      }
+    ]
+  ]
+}

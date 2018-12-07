@@ -5,6 +5,19 @@
     "es6": true
   },
   "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "alias": {
+          "@components": "./src/components",
+          "@configs": "./src/configs",
+          "@models": "./src/models",
+          "@pages": "./src/pages",
+          "@utils": "./src/utils"
+        }
+      }
+    }
+  },
   "rules": {
     "react/jsx-one-expression-per-line": 0,
     "react/prefer-stateless-function": 0,
