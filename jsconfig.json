@@ -2,19 +2,22 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
+      "components/*": [
         "./src/components/*"
       ],
-      "@configs/*": [
+      "configs/*": [
         "./src/configs/*"
       ],
-      "@models/*": [
+      "context/*": [
+        "./src/context/*"
+      ],
+      "models/*": [
         "./src/models/*"
       ],
-      "@pages/*": [
+      "pages/*": [
         "./src/pages/*"
       ],
-      "@utils/*": [
+      "utils/*": [
         "./src/utils/*"
       ]
     },

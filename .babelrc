@@ -17,11 +17,12 @@
           "./src"
         ],
         "alias": {
-          "@components": "./src/components",
-          "@configs": "./src/configs",
-          "@models": "./src/models",
-          "@pages": "./src/pages",
-          "@utils": "./src/utils"
+          "components": "./src/components",
+          "configs": "./src/configs",
+          "context": "./src/context",
+          "models": "./src/models",
+          "pages": "./src/pages",
+          "utils": "./src/utils"
         }
       }
     ]
