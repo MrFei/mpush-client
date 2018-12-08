@@ -11,4 +11,10 @@ const providers = [
   },
 ];
 
-export default () => providers.reverse().reduce((child, { component, props }) => createElement(component, props, child), null);
+const Provider = ({ children }) => (
+  providers.reverse().reduce((child, { component, props }) => (
+    createElement(component, props, child)
+  ), children)
+);
+
+export default Provider;

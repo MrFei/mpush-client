@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "eslint": "NODE_ENV=development eslint --ext .js --ext .jsx src",
+    "eslint": "set NODE_ENV=development&&eslint --ext .js --ext .jsx src",
     "test": "node scripts/test.js"
   },
   "browserslist": [
