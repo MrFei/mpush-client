@@ -23,10 +23,22 @@
     "react/jsx-one-expression-per-line": 0,
     "react/prefer-stateless-function": 0,
     "react/no-array-index-key": 1,
+    "react/destructuring-assignment": 0,
+    "react/sort-comp": [
+      2,
+      {
+        "order": [
+          "static-methods",
+          "lifecycle",
+          "render",
+          "everything-else"
+        ]
+      }
+    ],
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-noninteractive-element-interactions": 0,
     "jsx-a11y/anchor-is-valid": [
-      "error",
+      2,
       {
         "components": [
           "Link"
@@ -37,8 +49,17 @@
       }
     ],
     "max-len": [
-      "error",
+      2,
       200
-    ]
+    ],
+    "lines-between-class-members": [
+      2,
+      "always",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ],
+    "import/prefer-default-export": 0,
+    "no-plusplus": 0
   }
 }

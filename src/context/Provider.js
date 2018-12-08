@@ -1,5 +1,7 @@
 import { createElement } from 'react';
 import { Router } from 'react-router-dom';
+import { Provider as Mobx } from 'mobx-react';
+import * as stores from 'models/stores';
 import history from './history';
 
 const providers = [
@@ -8,6 +10,10 @@ const providers = [
     props: {
       history,
     },
+  },
+  {
+    component: Mobx,
+    props: stores,
   },
 ];
 
