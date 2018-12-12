@@ -2,24 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "components/*": [
-        "./src/components/*"
-      ],
-      "configs/*": [
-        "./src/configs/*"
-      ],
-      "context/*": [
-        "./src/context/*"
-      ],
-      "models/*": [
-        "./src/models/*"
-      ],
-      "pages/*": [
-        "./src/pages/*"
-      ],
-      "utils/*": [
-        "./src/utils/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "experimentalDecorators": true
   }

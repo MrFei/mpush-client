@@ -7,15 +7,17 @@
   "parser": "babel-eslint",
   "settings": {
     "import/resolver": {
-      "babel-module": {
-        "alias": {
-          "components": "./src/components",
-          "configs": "./src/configs",
-          "context": "./src/context",
-          "models": "./src/models",
-          "pages": "./src/pages",
-          "utils": "./src/utils"
-        }
+      "alias": {
+        "map": [
+          [
+            "@",
+            "./src"
+          ]
+        ],
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     }
   },

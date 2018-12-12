@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { Router } from 'react-router-dom';
 import { Provider as Mobx } from 'mobx-react';
-import * as stores from 'models/stores';
+import * as stores from '@/models/stores';
 import history from './history';
 
 const providers = [

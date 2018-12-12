@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Provider from 'context/Provider';
-import App from 'pages';
-import * as serviceWorker from 'utils/serviceWorker';
-import 'configs/libs';
+import Provider from '@/context/Provider';
+import App from '@/pages';
+import * as serviceWorker from '@/utils/serviceWorker';
+import '@/configs/libs';
 
 /* eslint-disable react/jsx-filename-extension */
 ReactDOM.render((
