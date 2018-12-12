@@ -21,6 +21,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -451,6 +452,15 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: path.join(paths.appBuildDll, 'vendors-manifest.json'),
+    }),
+    new AddAssetHtmlPlugin([
+      {
+        filepath: path.join(paths.appBuildDll, '*.dll.js'),
+      },
+    ]),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
