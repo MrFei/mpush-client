@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
+import { Button } from '@material-ui/core';
 
 @inject('countStore')
 @observer
@@ -17,7 +18,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Count: {count}</h1>
-        <button type="button" onClick={this.handleAddClick}>Add</button>
+        <Button type="button" onClick={this.handleAddClick}>Add</Button>
       </div>
     );
   }
