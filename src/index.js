@@ -4,6 +4,7 @@ import Provider from '@/context/Provider';
 import App from '@/pages';
 import * as serviceWorker from '@/utils/serviceWorker';
 import '@/configs/libs';
+import '@/styles/global/index.less';
 
 /* eslint-disable react/jsx-filename-extension */
 ReactDOM.render((
