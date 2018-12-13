@@ -27,6 +27,7 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printHostingInstructions = require('react-dev-utils/printHostingInstructions');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
+const del = require('del');
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -121,11 +122,11 @@ checkBrowsers(paths.appPath, isInteractive)
   });
 
 // Create the production build and print the deployment instructions.
-function build(previousFileSizes) {
+async function build(previousFileSizes) {
   console.log('Creating an optimized production build...');
 
   let compiler = webpack(config);
-  return new Promise((resolve, reject) => {
+  const res = await new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       let messages;
       if (err) {
@@ -179,6 +180,14 @@ function build(previousFileSizes) {
       return resolve(resolveArgs);
     });
   });
+
+  console.log('Cleanup public directory...');
+  del.sync([
+    path.join(paths.appPublic, 'vendors-manifest.json'),
+    path.join(paths.appPublic, '*.dll.js'),
+  ]);
+
+  return res;
 }
 
 function copyPublicFolder() {

@@ -454,11 +454,11 @@ module.exports = {
   plugins: [
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: path.join(paths.appBuildDll, 'vendors-manifest.json'),
+      manifest: path.join(paths.appPublic, 'vendors-manifest.json'),
     }),
     new AddAssetHtmlPlugin([
       {
-        filepath: path.join(paths.appBuildDll, '*.dll.js'),
+        filepath: path.join(paths.appPublic, '*.dll.js'),
       },
     ]),
     // Generates an `index.html` file with the <script> injected.
