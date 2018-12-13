@@ -18,10 +18,15 @@ if (nodeEnv === 'development') {
   ]);
 }
 
+const vendors = Object.keys(packageJson.dependencies)
+  .filter(depName => ![
+    /^@material-ui/,
+  ].some(reg => reg.test(depName)));
+
 module.exports = {
   mode: nodeEnv,
   entry: {
-    vendors: Object.keys(packageJson.dependencies),
+    vendors,
   },
   output: {
     filename: '[name].[chunkhash:8].dll.js',
