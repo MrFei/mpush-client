@@ -43,6 +43,15 @@
         "camel2DashComponentName": false
       },
       "icons"
+    ],
+    [
+      "import",
+      {
+        "libraryName": "lodash",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      },
+      "lodash"
     ]
   ]
 }

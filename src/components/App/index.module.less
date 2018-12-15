@@ -1,0 +1,17 @@
+@import '../../styles/mixin/index';
+@drawer-width: 210px;
+.container {
+  display: flex;
+  .drawer {
+    @media (min-width: @sm) {
+      width: @drawer-width;
+      flex-shrink: 0;
+    }
+  }
+  .drawer-paper {
+    width: @drawer-width;
+  }
+  .content {
+    flex-grow: 1;
+  }
+}
