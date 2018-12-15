@@ -9,15 +9,14 @@ import styles from './TopBar.module.less';
 @observer
 class TopBar extends React.Component {
   static propTypes = {
-    onMenuClick: PropTypes.func.isRequired,
     appStore: PropTypes.shape({
       topTitle: PropTypes.string,
+      toggleDrawer: PropTypes.func,
     }).isRequired,
   }
 
   render() {
-    const { onMenuClick } = this.props;
-    const { topTitle } = this.props.appStore;
+    const { topTitle, toggleDrawer } = this.props.appStore;
     return (
       <AppBar position="fixed" className={styles.container}>
         <Toolbar>
@@ -25,7 +24,7 @@ class TopBar extends React.Component {
             className={styles['menu-button']}
             color="inherit"
             aria-label="Open Drawer"
-            onClick={onMenuClick}
+            onClick={() => toggleDrawer(true)}
           >
             <MenuIcon />
           </IconButton>

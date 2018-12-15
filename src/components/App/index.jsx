@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <CssBaseline />
-        <TopBar onMenuClick={() => toggleDrawer(true)} />
+        <TopBar />
         <nav className={styles.drawer}>
           {isMobile ? (
             <SwipeableDrawer
