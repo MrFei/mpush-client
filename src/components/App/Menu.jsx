@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
-import { Toolbar, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Toolbar, Divider, List, ListItem, ListItemText } from '@material-ui/core';
 import menuConfig from '@/configs/menu';
 
 @inject('appStore')
@@ -29,7 +29,7 @@ class Menu extends React.Component {
               to={menu.path}
               selected={menu.name === currMenu.name}
             >
-              <ListItemIcon>{React.createElement(menu.icon)}</ListItemIcon>
+              {React.createElement(menu.icon)}
               <ListItemText primary={menu.name} />
             </ListItem>
           ))}
