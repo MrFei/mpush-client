@@ -1,10 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import loadable from 'react-loadable';
 import { observer, inject } from 'mobx-react';
-import { Drawer, SwipeableDrawer, CssBaseline, Toolbar } from '@material-ui/core';
+import { CssBaseline, Toolbar } from '@material-ui/core';
+import { LoadingBar } from '@/components/Loading';
 import TopBar from './TopBar';
 import Menu from './Menu';
 import styles from './index.module.less';
+
+const Drawer = loadable({
+  loader: () => import('@material-ui/core/Drawer'),
+  loading: LoadingBar,
+});
+const SwipeableDrawer = loadable({
+  loader: () => import('@material-ui/core/SwipeableDrawer'),
+  loading: LoadingBar,
+});
 
 @inject('appStore')
 @observer
