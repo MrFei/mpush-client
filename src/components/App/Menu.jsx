@@ -1,27 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { observer, inject } from 'mobx-react';
 import { Toolbar, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Mail as MailIcon } from '@material-ui/icons';
+import menuConfig from '@/configs/menu';
 
+@inject('appStore')
+@observer
 class Menu extends React.Component {
+  static propTypes = {
+    appStore: PropTypes.shape({
+      currMenu: PropTypes.object,
+    }).isRequired,
+  }
+
   render() {
+    const { currMenu } = this.props.appStore;
     return (
       <div>
         <Toolbar />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map(text => (
-            <ListItem button key={text}>
-              <ListItemIcon><MailIcon /></ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map(text => (
-            <ListItem button key={text}>
-              <ListItemIcon><MailIcon /></ListItemIcon>
-              <ListItemText primary={text} />
+          {menuConfig.map(menu => (
+            <ListItem
+              button
+              key={menu.name}
+              component={Link}
+              to={menu.path}
+              selected={menu.name === currMenu.name}
+            >
+              <ListItemIcon>{React.createElement(menu.icon)}</ListItemIcon>
+              <ListItemText primary={menu.name} />
             </ListItem>
           ))}
         </List>
