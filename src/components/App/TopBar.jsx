@@ -18,34 +18,36 @@ class TopBar extends React.Component {
   render() {
     const { topTitle, toggleDrawer } = this.props.appStore;
     return (
-      <AppBar position="fixed" className={styles.container}>
-        <Toolbar>
-          <IconButton
-            className={styles['menu-button']}
-            color="inherit"
-            aria-label="Open Drawer"
-            onClick={() => toggleDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={styles.title} variant="h6" color="inherit" noWrap>
-            {topTitle}
-          </Typography>
-          <div className={styles.grow} />
-          <div className={styles.search}>
-            <div className={styles['search-icon']}>
-              <SearchIcon />
+      <div className={styles.container}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton
+              className={styles['menu-button']}
+              color="inherit"
+              aria-label="Open Drawer"
+              onClick={() => toggleDrawer(true)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className={styles.title} variant="h6" color="inherit" noWrap>
+              {topTitle}
+            </Typography>
+            <div className={styles.grow} />
+            <div className={styles.search}>
+              <div className={styles['search-icon']}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: styles['input-container'],
+                  input: styles['input-box'],
+                }}
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: styles['input-container'],
-                input: styles['input-box'],
-              }}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
+      </div>
     );
   }
 }
