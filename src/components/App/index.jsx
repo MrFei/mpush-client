@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import loadable from 'react-loadable';
 import { observer, inject } from 'mobx-react';
-import { Switch, Route, Redirect } from 'react-router-dom';
 import { CssBaseline, Toolbar } from '@material-ui/core';
 import { LoadingBar } from '@/components/Loading';
 import styles from './index.module.less';
 import TopBar from './TopBar';
 import Menu from './Menu';
+import Routes from './Routes';
 
 const Drawer = loadable({
   loader: () => import('@material-ui/core/Drawer'),
@@ -26,13 +26,11 @@ class App extends React.Component {
       isMobile: PropTypes.bool,
       toggleDrawer: PropTypes.func,
       showNav: PropTypes.bool,
-      menus: PropTypes.array,
-      defaultPath: PropTypes.string,
     }).isRequired,
   }
 
   render() {
-    const { isMobile, menus, defaultPath, showNav, toggleDrawer } = this.props.appStore;
+    const { isMobile, showNav, toggleDrawer } = this.props.appStore;
     return (
       <div className={styles.container}>
         <CssBaseline />
@@ -57,13 +55,11 @@ class App extends React.Component {
             </Drawer>
           )}
         </nav>
-        <main className={styles.content}>
+        <main className={styles.main}>
           <Toolbar />
-          <Switch>
-            <Route exact path="/" render={() => (<Redirect to={defaultPath} />)} />
-            {menus.map(menu => <Route key={menu.path} path={menu.path} component={menu.component} />)}
-            <Route render={() => <h1>404</h1>} />
-          </Switch>
+          <div className={styles.content}>
+            <Routes />
+          </div>
         </main>
       </div>
     );
