@@ -1,5 +1,5 @@
 import loadable from 'react-loadable';
-import { LoadingBar } from '@/components/Loading';
+import { Circular } from '@/components/Loading';
 
 import StarIcon from '@material-ui/icons/Star';
 import SearchIcon from '@material-ui/icons/Search';
@@ -12,7 +12,7 @@ export default [
     path: '/good',
     component: loadable({
       loader: () => import('@/pages/GoodMovie'),
-      loading: LoadingBar,
+      loading: Circular,
     }),
     default: true,
   },
@@ -22,7 +22,7 @@ export default [
     path: '/search',
     component: loadable({
       loader: () => import('@/pages/Search'),
-      loading: LoadingBar,
+      loading: Circular,
     }),
   },
   {
@@ -31,7 +31,7 @@ export default [
     path: '/setting',
     component: loadable({
       loader: () => import('@/pages/Setting'),
-      loading: LoadingBar,
+      loading: Circular,
     }),
   },
 ];
