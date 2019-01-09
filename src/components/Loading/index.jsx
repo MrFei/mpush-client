@@ -1,16 +1,30 @@
 import React from 'react';
+import styled from 'styled-components';
 import { LinearProgress, CircularProgress } from '@material-ui/core';
 import withLoadable from './withLoadable';
-import styles from './index.module.less';
 
+const LoadingBarContainer = styled.div`
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+`;
 export const LoadingBar = withLoadable(() => (
-  <div className={styles['loading-bar-container']}>
+  <LoadingBarContainer>
     <LinearProgress color="primary" />
-  </div>
+  </LoadingBarContainer>
 ));
 
+const CircularContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const Circular = withLoadable(() => (
-  <div className={styles['circular-container']}>
+  <CircularContainer>
     <CircularProgress />
-  </div>
+  </CircularContainer>
 ));

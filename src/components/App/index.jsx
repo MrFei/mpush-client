@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import loadable from 'react-loadable';
 import { observer, inject } from 'mobx-react';
 import { CssBaseline, Toolbar } from '@material-ui/core';
 import { LoadingBar } from '@/components/Loading';
-import styles from './index.module.less';
+import theme from '@/context/theme';
 import TopBar from './TopBar';
 import Menu from './Menu';
 import Routes from './Routes';
@@ -17,6 +18,33 @@ const SwipeableDrawer = loadable({
   loader: () => import('@material-ui/core/SwipeableDrawer'),
   loading: LoadingBar,
 });
+
+const DRAWER_WIDTH = 150;
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const DrawerWrapper = styled.nav`
+  ${theme.breakpoints.up('sm')} {
+    width: ${DRAWER_WIDTH}px;
+    flex-shrink: 0;
+  }
+`;
+
+const PCDrawer = styled(Drawer)`
+  .drawer-paper {
+    width: ${DRAWER_WIDTH}px;
+  }
+`;
+
+const Main = styled.main`
+  flex-grow: 1;
+`;
+
+const Content = styled.div`
+  padding: 20px;
+`;
 
 @inject('appStore')
 @observer
@@ -32,10 +60,10 @@ class App extends React.Component {
   render() {
     const { isMobile, showNav, toggleDrawer } = this.props.appStore;
     return (
-      <div className={styles.container}>
+      <Container>
         <CssBaseline />
         <TopBar />
-        <nav className={styles.drawer}>
+        <DrawerWrapper>
           {isMobile ? (
             <SwipeableDrawer
               disableBackdropTransition
@@ -46,22 +74,22 @@ class App extends React.Component {
               <Menu />
             </SwipeableDrawer>
           ) : (
-            <Drawer
+            <PCDrawer
               open
               variant="permanent"
-              classes={{ paper: styles['drawer-paper'] }}
+              classes={{ paper: 'drawer-paper' }}
             >
               <Menu />
-            </Drawer>
+            </PCDrawer>
           )}
-        </nav>
-        <main className={styles.main}>
+        </DrawerWrapper>
+        <Main>
           <Toolbar />
-          <div className={styles.content}>
+          <Content>
             <Routes />
-          </div>
-        </main>
-      </div>
+          </Content>
+        </Main>
+      </Container>
     );
   }
 }

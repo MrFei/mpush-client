@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
+import theme from '@/context/theme';
 import { Snackbar, Button, IconButton } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 
-const styles = theme => ({
-  close: {
-    padding: theme.spacing.unit / 2,
-  },
-});
+
+const CloseButton = styled(IconButton)`
+  && {
+    padding: ${theme.spacing.unit / 2}px;
+  }
+`;
 
 class SimpleSnackbar extends React.Component {
   static propTypes = {
@@ -17,7 +19,6 @@ class SimpleSnackbar extends React.Component {
     dismiss: PropTypes.bool,
     onButtonClick: PropTypes.func,
     message: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -42,7 +43,7 @@ class SimpleSnackbar extends React.Component {
   }
 
   render() {
-    const { classes, button, message } = this.props;
+    const { button, message } = this.props;
     return (
       <div>
         <Snackbar
@@ -63,15 +64,14 @@ class SimpleSnackbar extends React.Component {
                 {button}
               </Button>
             ),
-            <IconButton
+            <CloseButton
               key="close"
               aria-label="Close"
               color="inherit"
-              className={classes.close}
               onClick={this.handleClose}
             >
               <CloseIcon />
-            </IconButton>,
+            </CloseButton>,
           ]}
         />
       </div>
@@ -91,4 +91,4 @@ class SimpleSnackbar extends React.Component {
   };
 }
 
-export default withStyles(styles)(SimpleSnackbar);
+export default SimpleSnackbar;

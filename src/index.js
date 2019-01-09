@@ -9,11 +9,13 @@ import '@/configs/libs';
 
 /* eslint-disable react/jsx-filename-extension */
 ReactDOM.render((
-  <Provider>
+  <React.Fragment>
     <Normalize />
     <GlobalStyle />
-    <App />
-  </Provider>
+    <Provider>
+      <App />
+    </Provider>
+  </React.Fragment>
 ), document.getElementById('root'));
 
 serviceWorker.register();
