@@ -1,9 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import theme from '@/context/theme';
 import { observer, inject } from 'mobx-react';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import { AppBar, Toolbar, IconButton, Typography, InputBase } from '@material-ui/core';
 import { Menu as MenuIcon, Search as SearchIcon } from '@material-ui/icons';
-import styles from './TopBar.module.less';
+
+const Container = styled.div`
+  z-index: 1300;
+`;
+
+const MenuButton = styled(IconButton)`
+  && {
+    display: block;
+    margin-left: -12px;
+    margin-right: 20px;
+    ${theme.breakpoints.up('sm')} {
+      display: none;
+    }
+  }
+`;
+
+const Title = styled(Typography)`
+  && {
+    display: none;
+    ${theme.breakpoints.up('sm')} {
+      display: block;
+    }
+  }
+`;
+
+const Grow = styled.div`
+  flex-grow: 1;
+`;
+
+const Search = styled.div`
+  width: 100%;
+  position: relative;
+  border-radius: ${theme.shape.borderRadius}px;
+  background-color: ${fade(theme.palette.common.white, 0.15)};
+  margin-left: 0;
+  &:hover{
+    background-color: ${fade(theme.palette.common.white, 0.25)};
+  }
+  ${theme.breakpoints.up('sm')} {
+    margin-left: ${theme.spacing.unit}px;
+    width: auto;
+  }
+  .input-container{
+    color: inherit;
+    width: 100%;
+  }
+  .input-box {
+    width: 100%;
+    padding: ${theme.spacing.unit}px;
+    padding-left: ${theme.spacing.unit * 8}px;
+    transition: ${theme.transitions.create('width')};
+    ${theme.breakpoints.up('sm')} {
+      width: 200px;
+      &:focus {
+        width: 280px;
+      }
+    }
+  }
+`;
+
+const SearchIconWrapper = styled.div`
+  width: ${theme.spacing.unit * 9}px;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 @inject('appStore')
 @observer
@@ -18,36 +89,35 @@ class TopBar extends React.Component {
   render() {
     const { topTitle, toggleDrawer } = this.props.appStore;
     return (
-      <div className={styles.container}>
+      <Container>
         <AppBar position="fixed">
           <Toolbar>
-            <IconButton
-              className={styles['menu-button']}
+            <MenuButton
               color="inherit"
               aria-label="Open Drawer"
               onClick={() => toggleDrawer(true)}
             >
               <MenuIcon />
-            </IconButton>
-            <Typography className={styles.title} variant="h6" color="inherit" noWrap>
+            </MenuButton>
+            <Title variant="h6" color="inherit" noWrap>
               {topTitle}
-            </Typography>
-            <div className={styles.grow} />
-            <div className={styles.search}>
-              <div className={styles['search-icon']}>
+            </Title>
+            <Grow />
+            <Search>
+              <SearchIconWrapper>
                 <SearchIcon />
-              </div>
+              </SearchIconWrapper>
               <InputBase
                 placeholder="Search…"
                 classes={{
-                  root: styles['input-container'],
-                  input: styles['input-box'],
+                  root: 'input-container',
+                  input: 'input-box',
                 }}
               />
-            </div>
+            </Search>
           </Toolbar>
         </AppBar>
-      </div>
+      </Container>
     );
   }
 }
