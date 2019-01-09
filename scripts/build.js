@@ -27,7 +27,7 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printHostingInstructions = require('react-dev-utils/printHostingInstructions');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
-const del = require('del');
+const createDll = require('./dll');
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -65,7 +65,7 @@ checkBrowsers(paths.appPath, isInteractive)
     // Merge with the public folder
     copyPublicFolder();
     // Start the webpack build
-    return build(previousFileSizes);
+    return createDll().then(() => build(previousFileSizes))
   })
   .then(
     ({ stats, previousFileSizes, warnings }) => {
@@ -180,12 +180,6 @@ async function build(previousFileSizes) {
       return resolve(resolveArgs);
     });
   });
-
-  console.log('Cleanup public directory...');
-  del.sync([
-    path.join(paths.appPublic, 'vendors-manifest.json'),
-    path.join(paths.appPublic, '*.dll.js'),
-  ]);
 
   return res;
 }

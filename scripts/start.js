@@ -15,7 +15,7 @@ process.on('unhandledRejection', err => {
 require('../config/env');
 
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -31,6 +31,7 @@ const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
 const config = require('../config/webpack.config.dev');
 const createDevServerConfig = require('../config/webpackDevServer.config');
+const createDll = require('./dll');
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
@@ -61,10 +62,24 @@ if (process.env.HOST) {
   console.log();
 }
 
+async function checkDll() {
+  await fs.ensureDir(paths.appCache);
+  const files = await fs.readdir(paths.appCache);
+  const needCreateDll = ![
+    /vendors-manifest\.json/,
+    /vendors\.\w+\.dll\.js/,
+  ].every(reg => files.some(name => reg.test(name)));
+  if (needCreateDll) {
+    await fs.emptyDir(paths.appCache);
+    return createDll();
+  }
+  return undefined;
+}
 // We require that you explictly set browsers and do not fall back to
 // browserslist defaults.
 const { checkBrowsers } = require('react-dev-utils/browsersHelper');
-checkBrowsers(paths.appPath, isInteractive)
+
+checkDll().then(() => checkBrowsers(paths.appPath, isInteractive))
   .then(() => {
     // We attempt to use the default port but if it is busy, we offer the user to
     // run on a different port. `choosePort()` Promise resolves to the next free port.

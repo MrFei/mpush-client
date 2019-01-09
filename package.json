@@ -18,10 +18,9 @@
     "react-router-dom": "^4.3.1"
   },
   "scripts": {
-    "init": "cross-env NODE_ENV=development npm run build:dll",
     "start": "node scripts/start.js",
-    "build": "cross-env NODE_ENV=production npm run build:dll && node scripts/build.js",
-    "build:dll": "webpack --config ./config/webpack.config.dll.js",
+    "build": "node scripts/build.js",
+    "update-dll": "cross-env NODE_ENV=development webpack --config ./config/webpack.config.dll.js",
     "eslint": "cross-env NODE_ENV=development eslint --ext .js --ext .jsx src",
     "test": "node scripts/test.js"
   },
@@ -50,7 +49,6 @@
     "chalk": "2.4.1",
     "cross-env": "^5.2.0",
     "css-loader": "1.0.0",
-    "del": "^3.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "eslint": "5.6.0",
