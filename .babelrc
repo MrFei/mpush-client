@@ -52,6 +52,7 @@
         "camel2DashComponentName": false
       },
       "lodash"
-    ]
+    ],
+    "babel-plugin-styled-components"
   ]
 }
