@@ -64,6 +64,14 @@
     ],
     "import/prefer-default-export": 0,
     "no-plusplus": 0,
-    "object-curly-newline": 0
+    "object-curly-newline": 0,
+    "no-console": [
+      1,
+      {
+        "allow": [
+          "error"
+        ]
+      }
+    ]
   }
 }
