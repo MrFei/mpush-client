@@ -10,13 +10,13 @@ const request = async (config) => {
   try {
     const { data, status } = await myAxios(config);
     if (status !== 200) {
-      throw new Error(`server error, status is ${status}`);
+      throw new Error(`server error, status: ${status}`);
     }
     if (!data) {
       throw new Error('server error, response empty');
     }
     if (data.code !== 200) {
-      throw new Error(`server error, code is ${data.code}, message is ${data.msg}`);
+      throw new Error(`server error, code: ${data.code}, message: ${data.msg}`);
     }
     return data.data;
   } catch (error) {

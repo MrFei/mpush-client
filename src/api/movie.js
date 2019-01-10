@@ -5,7 +5,7 @@ export const getComing = () => request({
   url: '/data/coming',
 });
 
-export const getGood = (offset, limit = appConfig.pagingLimit) => request({
+export const getGood = ({ offset, limit = appConfig.pagingLimit } = {}) => request({
   url: '/data/good',
   params: offset === undefined ? undefined : {
     limit,
@@ -13,7 +13,7 @@ export const getGood = (offset, limit = appConfig.pagingLimit) => request({
   },
 });
 
-export const getRes = (offset, limit = appConfig.pagingLimit) => request({
+export const getRes = ({ offset, limit = appConfig.pagingLimit } = {}) => request({
   url: '/data/res',
   params: offset === undefined ? undefined : {
     limit,
@@ -21,7 +21,7 @@ export const getRes = (offset, limit = appConfig.pagingLimit) => request({
   },
 });
 
-export const getSpider = (offset, limit = appConfig.pagingLimit) => request({
+export const getSpider = ({ offset, limit = appConfig.pagingLimit } = {}) => request({
   url: '/data/spider',
   params: offset === undefined ? undefined : {
     limit,
@@ -29,20 +29,27 @@ export const getSpider = (offset, limit = appConfig.pagingLimit) => request({
   },
 });
 
-export const getAll = (offset, limit = appConfig.pagingLimit) => request({
+export const getAll = ({
+  offset = 0,
+  limit = appConfig.pagingLimit,
+  type = 'pubdate',
+  order = 'desc',
+} = {}) => request({
   url: '/data/all',
-  params: offset === undefined ? undefined : {
+  params: {
     limit,
     offset,
+    type,
+    order,
   },
 });
 
 export const getMovieInfo = movieId => request({
-  url: `/info/${movieId}`,
+  url: `/data/info/${movieId}`,
 });
 
-export const search = (keyword, offset, limit = appConfig.pagingLimit) => request({
-  url: `/search/${keyword}`,
+export const search = ({ keyword, offset, limit = appConfig.pagingLimit } = {}) => request({
+  url: `/data/search/${keyword}`,
   params: offset === undefined ? undefined : {
     limit,
     offset,
