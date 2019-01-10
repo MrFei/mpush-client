@@ -9,13 +9,21 @@ class GoodMovie extends React.Component {
   static propTypes = {
     goodListStore: PropTypes.shape({
       data: PropTypes.array.isRequired,
+      loadMore: PropTypes.func.isRequired,
+      scrollPos: PropTypes.number.isRequired,
+      setScrollPos: PropTypes.func.isRequired,
     }).isRequired,
   }
 
   render() {
-    const { data } = this.props.goodListStore;
+    const { data, loadMore, scrollPos, setScrollPos } = this.props.goodListStore;
     return (
-      <MovieList data={data} />
+      <MovieList
+        data={data}
+        loadMore={loadMore}
+        scrollPos={scrollPos}
+        setScrollPos={setScrollPos}
+      />
     );
   }
 }
