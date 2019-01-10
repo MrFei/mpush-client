@@ -19,7 +19,7 @@ const SwipeableDrawer = loadable({
   loading: LoadingBar,
 });
 
-const DRAWER_WIDTH = 150;
+const DRAWER_WIDTH = 175;
 
 const Container = styled.div`
   display: flex;

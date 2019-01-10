@@ -27,10 +27,12 @@ class MovieList extends React.Component {
     appStore: PropTypes.shape({
       isMobile: PropTypes.bool,
     }).isRequired,
-    data: PropTypes.array.isRequired,
-    loadMore: PropTypes.func.isRequired,
-    scrollPos: PropTypes.number.isRequired,
-    setScrollPos: PropTypes.func.isRequired,
+    listStore: PropTypes.shape({
+      data: PropTypes.array,
+      loadMore: PropTypes.func,
+      scrollPos: PropTypes.number,
+      setScrollPos: PropTypes.func,
+    }).isRequired,
   }
 
   constructor(props) {
@@ -41,19 +43,19 @@ class MovieList extends React.Component {
 
   componentDidMount() {
     if (this.scrollRef.current) {
-      this.scrollRef.current.scrollTop = this.props.scrollPos;
+      this.scrollRef.current.scrollTop = this.props.listStore.scrollPos;
     }
   }
 
   componentWillUnmount() {
     if (this.scrollRef.current) {
       const { scrollTop } = this.scrollRef.current;
-      this.props.setScrollPos(scrollTop);
+      this.props.listStore.setScrollPos(scrollTop);
     }
   }
 
   render() {
-    const { data } = this.props;
+    const { data } = this.props.listStore;
     const { isMobile } = this.props.appStore;
     return (
       <ScrollContainer onScroll={this.onScroll} ref={this.scrollRef}>
@@ -66,7 +68,7 @@ class MovieList extends React.Component {
     if (this.scrollRef.current) {
       const { scrollHeight, scrollTop, clientHeight } = this.scrollRef.current;
       if (Math.abs(clientHeight - scrollHeight + scrollTop) < 10) {
-        this.props.loadMore();
+        this.props.listStore.loadMore();
       }
     }
   }
