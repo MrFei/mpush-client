@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { observer, inject } from 'mobx-react';
 import loadable from 'react-loadable';
 import { LoadingBar } from '@/components/Loading';
@@ -12,6 +13,11 @@ const ListMobi = loadable({
   loader: () => import('./Mobi'),
   loading: LoadingBar,
 });
+
+const ScrollContainer = styled.div`
+  height: 100%;
+  overflow-y: auto;
+`;
 
 @inject('appStore')
 @observer
@@ -26,10 +32,11 @@ class MovieList extends React.Component {
   render() {
     const { data } = this.props;
     const { isMobile } = this.props.appStore;
-    if (isMobile) {
-      return <ListMobi data={data} />;
-    }
-    return <ListPC data={data} />;
+    return (
+      <ScrollContainer>
+        {isMobile ? <ListMobi data={data} /> : <ListPC data={data} />}
+      </ScrollContainer>
+    );
   }
 }
 

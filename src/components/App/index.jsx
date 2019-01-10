@@ -40,10 +40,9 @@ const PCDrawer = styled(Drawer)`
 
 const Main = styled.main`
   flex-grow: 1;
-`;
-
-const Content = styled.div`
-  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 @inject('appStore')
@@ -85,9 +84,7 @@ class App extends React.Component {
         </DrawerWrapper>
         <Main>
           <Toolbar />
-          <Content>
-            <Routes />
-          </Content>
+          <Routes />
         </Main>
       </Container>
     );
