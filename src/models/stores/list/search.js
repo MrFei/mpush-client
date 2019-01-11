@@ -1,3 +1,5 @@
+import { action } from 'mobx';
+import history from '@/context/history';
 import { search } from '@/api/movie';
 import Base from './base';
 
@@ -7,9 +9,12 @@ class Search extends Base {
     this.keyword = '';
   }
 
+  @action
   execSearch = (keyword) => {
+    history.push(`/search/${keyword}`);
     this.keyword = keyword;
     this.data = [];
+    this.allLoaded = false;
     this.scrollPos = 0;
     this.fetchData({
       keyword: this.keyword,

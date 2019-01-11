@@ -38,7 +38,7 @@ class App {
   @action
   updateCurrMenu = () => {
     const { location: { pathname } } = history;
-    const currMenu = this.menus.find(menu => new RegExp(`^${pathname}`, 'i').test(menu.path));
+    const currMenu = this.menus.find(menu => new RegExp(`^${menu.path}`, 'i').test(pathname));
     if (currMenu) {
       this.currMenu = currMenu;
       this.topTitle = currMenu.name;

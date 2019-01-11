@@ -10,9 +10,9 @@ class Base {
   @observable errorMsg = ''
 
   constructor(matchPath, apiFunc) {
+    this.matchPath = matchPath;
+    this.apiFunc = apiFunc;
     if (matchPath && apiFunc) {
-      this.matchPath = matchPath;
-      this.apiFunc = apiFunc;
       this.init();
     }
   }
@@ -28,6 +28,7 @@ class Base {
   }
 
   fetchData = flow(function* fetchList(params) {
+    if (this.allLoaded) return;
     if (!this.data.length) {
       this.pageLoading = true;
     } else {
@@ -56,9 +57,7 @@ class Base {
   }
 
   loadMore = () => {
-    if (!this.allLoaded) {
-      this.fetchData({ offset: this.data.length });
-    }
+    this.fetchData({ offset: this.data.length });
   }
 
   @action

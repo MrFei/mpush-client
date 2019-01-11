@@ -76,13 +76,16 @@ const SearchIconWrapper = styled.div`
   justify-content: center;
 `;
 
-@inject('appStore')
+@inject('appStore', 'searchStore')
 @observer
 class TopBar extends React.Component {
   static propTypes = {
     appStore: PropTypes.shape({
       topTitle: PropTypes.string,
       toggleDrawer: PropTypes.func,
+    }).isRequired,
+    searchStore: PropTypes.shape({
+      execSearch: PropTypes.func,
     }).isRequired,
   }
 
@@ -108,6 +111,7 @@ class TopBar extends React.Component {
                 <SearchIcon />
               </SearchIconWrapper>
               <InputBase
+                onKeyDown={this.onSearch}
                 placeholder="Search…"
                 classes={{
                   root: 'input-container',
@@ -119,6 +123,15 @@ class TopBar extends React.Component {
         </AppBar>
       </Container>
     );
+  }
+
+  onSearch = (evt) => {
+    if (evt.key === 'Enter') {
+      const keyword = evt.target.value;
+      if (keyword) {
+        this.props.searchStore.execSearch(keyword);
+      }
+    }
   }
 }
 
