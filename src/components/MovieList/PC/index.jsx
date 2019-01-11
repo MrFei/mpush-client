@@ -18,13 +18,14 @@ const StyledCard = styled(Card)`
 class ListPC extends React.Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
+    onItemClick: PropTypes.func.isRequired,
   }
 
   render() {
-    const { data } = this.props;
+    const { data, onItemClick } = this.props;
     return (
       <Container>
-        {data.map(item => <StyledCard key={item.movieId} movieInfo={item} />)}
+        {data.map(item => <StyledCard key={item.movieId} movieInfo={item} onClick={() => onItemClick(item.movieId)} />)}
       </Container>
     );
   }

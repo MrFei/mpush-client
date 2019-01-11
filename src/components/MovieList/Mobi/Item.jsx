@@ -52,7 +52,7 @@ const Name = styled.span`
 
 class ListItem extends React.Component {
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
     movieInfo: PropTypes.shape({
       movieId: PropTypes.number,
       title: PropTypes.string,
@@ -65,10 +65,10 @@ class ListItem extends React.Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { onClick } = this.props;
     const { title, originalTitle, image, rating, pubdate, genres } = this.props.movieInfo;
     return (
-      <Container className={className}>
+      <Container onClick={onClick}>
         <Image image={image} />
         <Content>
           <Title>{title}</Title>

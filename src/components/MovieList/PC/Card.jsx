@@ -55,6 +55,7 @@ const Name = styled.span`
 class MovieCard extends React.Component {
   static propTypes = {
     className: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
     movieInfo: PropTypes.shape({
       movieId: PropTypes.number,
       title: PropTypes.string,
@@ -69,10 +70,10 @@ class MovieCard extends React.Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { className, onClick } = this.props;
     const { title, originalTitle, image, rating, pubdate, genres, countries, durations } = this.props.movieInfo;
     return (
-      <Container className={className}>
+      <Container className={className} onClick={onClick}>
         <Image image={image} title={title} />
         <Content>
           <TitleWrapper>

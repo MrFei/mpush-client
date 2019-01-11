@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { observer, inject } from 'mobx-react';
 import loadable from 'react-loadable';
 import { throttle } from 'lodash';
+import { withRouter, Route } from 'react-router-dom';
 import { LoadingBar } from '@/components/Loading';
+import MovieDetail from '@/pages/MovieDetail';
 import MsgBar from '@/components/MsgBar';
 import { CircularProgress } from '@material-ui/core';
 
@@ -40,10 +42,12 @@ const ScrollContainer = styled.div`
   overflow-y: auto;
 `;
 
+@withRouter
 @inject('appStore')
 @observer
 class MovieList extends React.Component {
   static propTypes = {
+    history: PropTypes.object.isRequired,
     appStore: PropTypes.shape({
       isMobile: PropTypes.bool,
     }).isRequired,
@@ -91,7 +95,7 @@ class MovieList extends React.Component {
     }
     return (
       <ScrollContainer onScroll={this.onScroll} ref={this.scrollRef}>
-        {isMobile ? <ListMobi data={data} /> : <ListPC data={data} />}
+        {isMobile ? <ListMobi data={data} onItemClick={this.onItemClick} /> : <ListPC data={data} onItemClick={this.onItemClick} />}
         {moreLoading && (
           <MoreLoading>
             <CircularProgress size={20} />
@@ -108,6 +112,7 @@ class MovieList extends React.Component {
           button="重试"
           onButtonClick={loadMore}
         />
+        <Route path="/detail/:movieId" component={MovieDetail} />
       </ScrollContainer>
     );
   }
@@ -120,6 +125,10 @@ class MovieList extends React.Component {
         loadMore();
       }
     }
+  }
+
+  onItemClick = (movieId) => {
+    this.props.history.push(`/detail/${movieId}`);
   }
 }
 
