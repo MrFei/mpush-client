@@ -1,10 +1,50 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import { observer, inject } from 'mobx-react';
+import loadable from 'react-loadable';
+import { withRouter } from 'react-router-dom';
+import { LoadingBar } from '@/components/Loading';
+import { Dialog } from '@material-ui/core';
 
+const DetailPC = loadable({
+  loader: () => import('./PC'),
+  loading: LoadingBar,
+});
+const DetailMobi = loadable({
+  loader: () => import('./Mobi'),
+  loading: LoadingBar,
+});
+
+@withRouter
+@inject('appStore')
 @observer
 class MovieDetail extends React.Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    appStore: PropTypes.shape({
+      isMobile: PropTypes.bool,
+    }).isRequired,
+  }
+
   render() {
-    return <h1>Detail</h1>;
+    const { match } = this.props;
+    const { isMobile } = this.props.appStore;
+    return (
+      <Dialog open onClose={this.onClose} fullScreen={isMobile}>
+        {isMobile ? (
+          <DetailMobi movieId={match.params.movieId} onClose={this.onClose} />
+        ) : (
+          <DetailPC movieId={match.params.movieId} onClose={this.onClose} />
+        )}
+      </Dialog>
+    );
+  }
+
+  onClose = () => {
+    const { history, match } = this.props;
+    const baseUrl = match.path.replace('/detail/:movieId', '');
+    history.push(baseUrl);
   }
 }
 

@@ -6,7 +6,6 @@ import loadable from 'react-loadable';
 import { throttle } from 'lodash';
 import { withRouter, Route } from 'react-router-dom';
 import { LoadingBar } from '@/components/Loading';
-import MovieDetail from '@/pages/MovieDetail';
 import MsgBar from '@/components/MsgBar';
 import { CircularProgress } from '@material-ui/core';
 
@@ -18,6 +17,11 @@ const ListMobi = loadable({
   loader: () => import('./Mobi'),
   loading: LoadingBar,
 });
+const MovieDetail = loadable({
+  loader: () => import('@/pages/MovieDetail'),
+  loading: LoadingBar,
+});
+
 const PageLoading = styled.div`
   height: 100%;
   display: flex;
@@ -48,6 +52,7 @@ const ScrollContainer = styled.div`
 class MovieList extends React.Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     appStore: PropTypes.shape({
       isMobile: PropTypes.bool,
     }).isRequired,
@@ -112,7 +117,7 @@ class MovieList extends React.Component {
           button="重试"
           onButtonClick={loadMore}
         />
-        <Route path="/detail/:movieId" component={MovieDetail} />
+        <Route path={`${this.props.match.url}/detail/:movieId`} component={MovieDetail} />
       </ScrollContainer>
     );
   }
@@ -128,7 +133,8 @@ class MovieList extends React.Component {
   }
 
   onItemClick = (movieId) => {
-    this.props.history.push(`/detail/${movieId}`);
+    const { history, match } = this.props;
+    history.push(`${match.url}/detail/${movieId}`);
   }
 }
 
