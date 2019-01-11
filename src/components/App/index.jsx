@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import loadable from 'react-loadable';
 import { observer, inject } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
 import { CssBaseline, Toolbar } from '@material-ui/core';
 import { LoadingBar } from '@/components/Loading';
 import theme from '@/context/theme';
@@ -45,6 +46,7 @@ const Main = styled.main`
   flex-direction: column;
 `;
 
+@withRouter
 @inject('appStore')
 @observer
 class App extends React.Component {
