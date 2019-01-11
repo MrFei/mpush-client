@@ -1,8 +1,12 @@
 import request from '@/utils/request';
 import appConfig from '@/configs/app';
 
-export const getComing = () => request({
+export const getComing = ({ offset, limit = appConfig.pagingLimit } = {}) => request({
   url: '/data/coming',
+  params: offset === undefined ? undefined : {
+    limit,
+    offset,
+  },
 });
 
 export const getGood = ({ offset, limit = appConfig.pagingLimit } = {}) => request({
