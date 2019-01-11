@@ -35,11 +35,10 @@ class SimpleSnackbar extends React.Component {
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (!nextProps.open !== prevState.open) {
-      return { open: nextProps.open };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.open !== this.state.open) {
+      this.setState({ open: nextProps.open });
     }
-    return null;
   }
 
   render() {

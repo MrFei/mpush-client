@@ -40,6 +40,7 @@ class Base {
       } else {
         this.allLoaded = true;
       }
+      this.errorMsg = '';
     } catch (error) {
       console.error(error);
       this.errorMsg = '数据加载失败';

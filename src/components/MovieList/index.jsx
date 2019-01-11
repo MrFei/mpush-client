@@ -5,6 +5,7 @@ import { observer, inject } from 'mobx-react';
 import loadable from 'react-loadable';
 import { throttle } from 'lodash';
 import { LoadingBar } from '@/components/Loading';
+import MsgBar from '@/components/MsgBar';
 import { CircularProgress } from '@material-ui/core';
 
 const ListPC = loadable({
@@ -54,6 +55,7 @@ class MovieList extends React.Component {
       pageLoading: PropTypes.bool,
       moreLoading: PropTypes.bool,
       allLoaded: PropTypes.bool,
+      errorMsg: PropTypes.string,
     }).isRequired,
   }
 
@@ -77,7 +79,7 @@ class MovieList extends React.Component {
   }
 
   render() {
-    const { data, pageLoading, moreLoading, allLoaded } = this.props.listStore;
+    const { data, pageLoading, moreLoading, allLoaded, errorMsg, loadMore } = this.props.listStore;
     const { isMobile } = this.props.appStore;
     if (pageLoading) {
       return (
@@ -100,6 +102,12 @@ class MovieList extends React.Component {
             <span>已全部加载</span>
           </MoreLoading>
         )}
+        <MsgBar
+          open={!!errorMsg}
+          message={errorMsg}
+          button="重试"
+          onButtonClick={loadMore}
+        />
       </ScrollContainer>
     );
   }
