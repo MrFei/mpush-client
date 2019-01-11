@@ -5,6 +5,7 @@ class Base {
   @observable data = []
   @observable pageLoading = false
   @observable moreLoading = false
+  @observable allLoaded = false
   @observable scrollPos = 0
   @observable errorMsg = ''
 
@@ -34,7 +35,11 @@ class Base {
     }
     try {
       const data = yield this.apiFunc(params);
-      this.data = this.data.concat(data);
+      if (data.length) {
+        this.data = this.data.concat(data);
+      } else {
+        this.allLoaded = true;
+      }
     } catch (error) {
       console.error(error);
       this.errorMsg = '数据加载失败';
@@ -50,7 +55,9 @@ class Base {
   }
 
   loadMore = () => {
-    this.fetchData({ offset: this.data.length });
+    if (!this.allLoaded) {
+      this.fetchData({ offset: this.data.length });
+    }
   }
 
   @action

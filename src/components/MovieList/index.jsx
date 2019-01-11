@@ -5,6 +5,7 @@ import { observer, inject } from 'mobx-react';
 import loadable from 'react-loadable';
 import { throttle } from 'lodash';
 import { LoadingBar } from '@/components/Loading';
+import { CircularProgress } from '@material-ui/core';
 
 const ListPC = loadable({
   loader: () => import('./PC'),
@@ -14,7 +15,25 @@ const ListMobi = loadable({
   loader: () => import('./Mobi'),
   loading: LoadingBar,
 });
-
+const PageLoading = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #3c3c3c;
+  }
+`;
+const MoreLoading = styled.div`
+  padding: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const ScrollContainer = styled.div`
   height: 100%;
   overflow-y: auto;
@@ -32,6 +51,9 @@ class MovieList extends React.Component {
       loadMore: PropTypes.func,
       scrollPos: PropTypes.number,
       setScrollPos: PropTypes.func,
+      pageLoading: PropTypes.bool,
+      moreLoading: PropTypes.bool,
+      allLoaded: PropTypes.bool,
     }).isRequired,
   }
 
@@ -55,20 +77,39 @@ class MovieList extends React.Component {
   }
 
   render() {
-    const { data } = this.props.listStore;
+    const { data, pageLoading, moreLoading, allLoaded } = this.props.listStore;
     const { isMobile } = this.props.appStore;
+    if (pageLoading) {
+      return (
+        <PageLoading>
+          <CircularProgress />
+          <span>正在获取电影列表</span>
+        </PageLoading>
+      );
+    }
     return (
       <ScrollContainer onScroll={this.onScroll} ref={this.scrollRef}>
         {isMobile ? <ListMobi data={data} /> : <ListPC data={data} />}
+        {moreLoading && (
+          <MoreLoading>
+            <CircularProgress size={20} />
+          </MoreLoading>
+        )}
+        {allLoaded && (
+          <MoreLoading>
+            <span>已全部加载</span>
+          </MoreLoading>
+        )}
       </ScrollContainer>
     );
   }
 
   onScroll = () => {
-    if (this.scrollRef.current) {
+    const { loadMore, moreLoading } = this.props.listStore;
+    if (this.scrollRef.current && !moreLoading) {
       const { scrollHeight, scrollTop, clientHeight } = this.scrollRef.current;
       if (Math.abs(clientHeight - scrollHeight + scrollTop) < 10) {
-        this.props.listStore.loadMore();
+        loadMore();
       }
     }
   }
