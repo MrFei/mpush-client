@@ -21,7 +21,7 @@ export const getRes = ({ offset, limit = appConfig.pagingLimit } = {}) => reques
   },
 });
 
-export const getSpider = ({ offset, limit = appConfig.pagingLimit } = {}) => request({
+export const getMonitor = ({ offset, limit = appConfig.pagingLimit } = {}) => request({
   url: '/data/spider',
   params: offset === undefined ? undefined : {
     limit,

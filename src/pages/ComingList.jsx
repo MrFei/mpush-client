@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import MovieList from '@/components/MovieList';
 
-@inject('comingListStore')
+@inject('comingStore')
 @observer
-class ComingMovie extends React.Component {
+class ComingList extends React.Component {
   static propTypes = {
-    comingListStore: PropTypes.object.isRequired,
+    comingStore: PropTypes.object.isRequired,
   }
 
   render() {
     return (
-      <MovieList listStore={this.props.comingListStore} />
+      <MovieList listStore={this.props.comingStore} />
     );
   }
 }
 
-export default ComingMovie;
+export default ComingList;

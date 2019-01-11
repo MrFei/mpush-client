@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import MovieList from '@/components/MovieList';
 
-@inject('goodListStore')
+@inject('goodStore')
 @observer
-class GoodMovie extends React.Component {
+class GoodList extends React.Component {
   static propTypes = {
-    goodListStore: PropTypes.object.isRequired,
+    goodStore: PropTypes.object.isRequired,
   }
 
   render() {
     return (
-      <MovieList listStore={this.props.goodListStore} />
+      <MovieList listStore={this.props.goodStore} />
     );
   }
 }
 
-export default GoodMovie;
+export default GoodList;

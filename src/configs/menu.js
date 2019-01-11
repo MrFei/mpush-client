@@ -13,7 +13,7 @@ export default [
     icon: ComingIcon,
     path: '/coming',
     component: loadable({
-      loader: () => import('@/pages/ComingMovie'),
+      loader: () => import('@/pages/ComingList'),
       loading: Circular,
     }),
     default: true,
@@ -23,7 +23,7 @@ export default [
     icon: GoodIcon,
     path: '/good',
     component: loadable({
-      loader: () => import('@/pages/GoodMovie'),
+      loader: () => import('@/pages/GoodList'),
       loading: Circular,
     }),
     default: true,
@@ -31,9 +31,9 @@ export default [
   {
     name: '电影资源',
     icon: ResIcon,
-    path: '/res',
+    path: '/resource',
     component: loadable({
-      loader: () => import('@/pages/ResMovie'),
+      loader: () => import('@/pages/ResourceList'),
       loading: Circular,
     }),
     default: true,
@@ -41,9 +41,9 @@ export default [
   {
     name: '监控列表',
     icon: ListIcon,
-    path: '/spider',
+    path: '/monitor',
     component: loadable({
-      loader: () => import('@/pages/SpiderMovie'),
+      loader: () => import('@/pages/MonitorList'),
       loading: Circular,
     }),
     default: true,
@@ -53,7 +53,7 @@ export default [
     icon: SearchIcon,
     path: '/search',
     component: loadable({
-      loader: () => import('@/pages/Search'),
+      loader: () => import('@/pages/SearchList'),
       loading: Circular,
     }),
   },

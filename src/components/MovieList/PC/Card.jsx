@@ -51,7 +51,7 @@ class MovieCard extends React.Component {
       movieId: PropTypes.number,
       title: PropTypes.string,
       image: PropTypes.string,
-      rating: PropTypes.string,
+      rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       pubdate: PropTypes.string,
       genres: PropTypes.array,
     }).isRequired,
