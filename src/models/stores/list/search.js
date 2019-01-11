@@ -11,7 +11,7 @@ class Search extends Base {
 
   @action
   execSearch = (keyword) => {
-    history.push(`/search/${keyword}`);
+    history.push('/search');
     this.keyword = keyword;
     this.data = [];
     this.allLoaded = false;
