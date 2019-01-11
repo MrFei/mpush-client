@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+import Item from './Item';
 
 @observer
 class ListMobi extends React.Component {
@@ -12,10 +13,7 @@ class ListMobi extends React.Component {
     const { data } = this.props;
     return (
       <div>
-        <h1>Mobi</h1>
-        <ul>
-          {data.map(d => <li key={d.movieId}>{d.title}</li>)}
-        </ul>
+        {data.map(item => <Item key={item.movieId} movieInfo={item} />)}
       </div>
     );
   }
