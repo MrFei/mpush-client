@@ -33,7 +33,7 @@ class SearchList extends React.Component {
 
   render() {
     const { searchStore } = this.props;
-    if (!searchStore.data.length) {
+    if (!searchStore.pageLoading && !searchStore.data.length) {
       return (
         <Message>
           <BadIcon />
