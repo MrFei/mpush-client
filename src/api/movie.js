@@ -48,9 +48,12 @@ export const getAll = ({
   },
 });
 
-export const getMovieInfo = movieId => request({
-  url: `/data/info/${movieId}`,
-});
+export const getMovieInfo = async (movieId) => {
+  const [data] = await request({
+    url: `/data/info/${movieId}`,
+  });
+  return data;
+};
 
 export const search = ({ keyword, offset, limit = appConfig.pagingLimit } = {}) => request({
   url: `/data/search/${keyword}`,

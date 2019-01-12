@@ -1,16 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observer, inject } from 'mobx-react';
 
+@inject('detailStore')
+@observer
 class MobiDetail extends React.Component {
   static propTypes = {
-    movieId: PropTypes.string.isRequired,
+    detailStore: PropTypes.shape({
+      data: PropTypes.object,
+      loading: PropTypes.bool,
+    }).isRequired,
   }
 
   render() {
-    const { movieId } = this.props;
-    return (
-      <h1>Mobile: {movieId}</h1>
-    );
+    const { data, loading } = this.props.detailStore;
+    if (!loading) {
+      return data.title;
+    }
+    return 'loading';
   }
 }
 

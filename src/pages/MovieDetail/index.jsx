@@ -28,14 +28,13 @@ class MovieDetail extends React.Component {
   }
 
   render() {
-    const { match } = this.props;
     const { isMobile } = this.props.appStore;
     return (
       <Dialog open onClose={this.onClose} fullScreen={isMobile}>
         {isMobile ? (
-          <DetailMobi movieId={match.params.movieId} onClose={this.onClose} />
+          <DetailMobi onClose={this.onClose} />
         ) : (
-          <DetailPC movieId={match.params.movieId} onClose={this.onClose} />
+          <DetailPC onClose={this.onClose} />
         )}
       </Dialog>
     );
