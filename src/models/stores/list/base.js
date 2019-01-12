@@ -34,6 +34,7 @@ class Base {
     } else {
       this.moreLoading = true;
     }
+    this.errorMsg = '';
     try {
       const data = yield this.apiFunc(params);
       if (data.length) {
@@ -41,7 +42,6 @@ class Base {
       } else {
         this.allLoaded = true;
       }
-      this.errorMsg = '';
     } catch (error) {
       console.error(error);
       this.errorMsg = '数据加载失败';

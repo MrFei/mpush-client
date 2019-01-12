@@ -30,9 +30,9 @@ class Detail {
       this.data = cacheData.data;
     } else {
       this.loading = true;
+      this.errorMsg = '';
       try {
         const data = yield getMovieInfo(movieId);
-        this.errorMsg = '';
         this.cache[movieId] = {
           data,
           updatedAt: Date.now(),

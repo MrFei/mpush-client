@@ -6,6 +6,7 @@ import loadable from 'react-loadable';
 import { throttle } from 'lodash';
 import { withRouter, Route } from 'react-router-dom';
 import { LoadingBar } from '@/components/Loading';
+import PageLoading from '@/components/PageLoading';
 import MsgBar from '@/components/MsgBar';
 import { CircularProgress } from '@material-ui/core';
 
@@ -22,18 +23,6 @@ const MovieDetail = loadable({
   loading: LoadingBar,
 });
 
-const PageLoading = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  span {
-    margin-top: 20px;
-    font-size: 16px;
-    color: #3c3c3c;
-  }
-`;
 const MoreLoading = styled.div`
   padding: 5px;
   margin-bottom: 10px;
@@ -91,12 +80,7 @@ class MovieList extends React.Component {
     const { data, pageLoading, moreLoading, allLoaded, errorMsg, loadMore } = this.props.listStore;
     const { isMobile } = this.props.appStore;
     if (pageLoading) {
-      return (
-        <PageLoading>
-          <CircularProgress />
-          <span>正在获取电影列表</span>
-        </PageLoading>
-      );
+      return <PageLoading>正在获取电影列表</PageLoading>;
     }
     return (
       <ScrollContainer onScroll={this.onScroll} ref={this.scrollRef}>
