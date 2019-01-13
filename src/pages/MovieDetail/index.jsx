@@ -35,6 +35,7 @@ class MovieDetail extends React.Component {
         fullWidth
         scroll="paper"
         fullScreen={isMobile}
+        aria-labelledby="dialog-title"
       >
         {isMobile ? <DetailMobi onClose={this.onClose} /> : <DetailPC onClose={this.onClose} />}
       </Dialog>
