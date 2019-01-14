@@ -4,8 +4,8 @@ import styled, { css } from 'styled-components';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const nowrapStyle = css`
-  white-space: nowrap;  
-  text-overflow: ellipsis; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
   max-width: 200px;
 `;

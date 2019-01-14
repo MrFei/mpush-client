@@ -17,6 +17,11 @@ const Content = styled.div`
   flex: 1;
   overflow-y: auto;
 `;
+const Title = styled(Typography)`
+  && {
+    white-space: nowrap;
+  }
+`;
 
 @inject('detailStore')
 @observer
@@ -40,9 +45,9 @@ class MobiDetail extends React.Component {
             <IconButton color="inherit" onClick={onClose}>
               <BackIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit">
+            <Title variant="h6" color="inherit">
               {!loading && data ? data.title : ''}
-            </Typography>
+            </Title>
           </Toolbar>
         </AppBar>
         <Content>
