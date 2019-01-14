@@ -9,6 +9,7 @@ import { LoadingBar } from '@/components/Loading';
 import PageLoading from '@/components/PageLoading';
 import MsgBar from '@/components/MsgBar';
 import { CircularProgress } from '@material-ui/core';
+import { openURLNewTab } from '@/utils';
 
 const ListPC = loadable({
   loader: () => import('./PC'),
@@ -118,7 +119,11 @@ class MovieList extends React.Component {
 
   onItemClick = (movieId) => {
     const { history, match } = this.props;
-    history.push(`${match.url}/detail/${movieId}`);
+    if (match.path === '/coming') {
+      openURLNewTab(`https://m.douban.com/movie/subject/${movieId}`);
+    } else {
+      history.push(`${match.url}/detail/${movieId}`);
+    }
   }
 }
 

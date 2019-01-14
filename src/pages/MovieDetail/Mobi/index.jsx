@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { observer, inject } from 'mobx-react';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core';
 import { ArrowBackIos as BackIcon } from '@material-ui/icons';
 import PageLoading from '@/components/PageLoading';
 import ErrorMsg from '../ErrorMsg';
@@ -21,6 +21,9 @@ const Title = styled(Typography)`
   && {
     white-space: nowrap;
   }
+`;
+const Grow = styled.div`
+  flex: 1;
 `;
 
 @inject('detailStore')
@@ -48,6 +51,8 @@ class MobiDetail extends React.Component {
             <Title variant="h6" color="inherit">
               {!loading && data ? data.title : ''}
             </Title>
+            <Grow />
+            {!loading && data && <Button color="inherit" component="a" target="_blank" href={`https://m.douban.com/movie/subject/${data.movieId}`}>豆瓣</Button>}
           </Toolbar>
         </AppBar>
         <Content>

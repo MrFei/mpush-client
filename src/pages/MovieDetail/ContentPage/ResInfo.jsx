@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
+import { openURLNewTab } from '@/utils';
 
 const Container = styled(ExpansionPanel)`
   && {
@@ -39,7 +40,7 @@ class ResInfo extends React.Component {
 
   state = {
     dialogOpen: false,
-    targetURL: window.location.href,
+    targetURL: '',
   }
 
   render() {
@@ -119,7 +120,8 @@ class ResInfo extends React.Component {
   }
 
   openURL = () => {
-    window.location.href = this.state.targetURL;
+    openURLNewTab(this.state.targetURL);
+    this.handleClose();
   }
 }
 
