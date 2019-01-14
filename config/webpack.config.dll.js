@@ -9,6 +9,7 @@ const outputDir = nodeEnv === 'production' ? paths.appBuild : paths.appCache;
 const vendors = Object.keys(packageJson.dependencies)
   .filter(depName => ![
     /^@material-ui/,
+    /lodash/,
   ].some(reg => reg.test(depName)));
 
 module.exports = {
