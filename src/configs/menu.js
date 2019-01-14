@@ -16,7 +16,6 @@ export default [
       loader: () => import('@/pages/ComingList'),
       loading: Circular,
     }),
-    default: true,
   },
   {
     name: '高分电影',
@@ -36,7 +35,6 @@ export default [
       loader: () => import('@/pages/ResourceList'),
       loading: Circular,
     }),
-    default: true,
   },
   {
     name: '监控列表',
@@ -46,7 +44,6 @@ export default [
       loader: () => import('@/pages/MonitorList'),
       loading: Circular,
     }),
-    default: true,
   },
   {
     name: '搜索',
