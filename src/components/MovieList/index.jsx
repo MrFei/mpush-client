@@ -80,12 +80,11 @@ class MovieList extends React.Component {
   render() {
     const { data, pageLoading, moreLoading, allLoaded, errorMsg, loadMore } = this.props.listStore;
     const { isMobile } = this.props.appStore;
-    if (pageLoading) {
-      return <PageLoading>正在获取电影列表</PageLoading>;
-    }
     return (
       <ScrollContainer onScroll={this.onScroll} ref={this.scrollRef}>
-        {isMobile ? <ListMobi data={data} onItemClick={this.onItemClick} /> : <ListPC data={data} onItemClick={this.onItemClick} />}
+        {pageLoading ? <PageLoading>正在获取电影列表</PageLoading> : (
+          isMobile ? <ListMobi data={data} onItemClick={this.onItemClick} /> : <ListPC data={data} onItemClick={this.onItemClick} />
+        )}
         {moreLoading && (
           <MoreLoading>
             <CircularProgress size={20} />

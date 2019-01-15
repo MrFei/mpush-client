@@ -19,7 +19,7 @@ class Base {
 
   init = () => {
     const callOnload = (pathname) => {
-      if (pathname.toLowerCase() === this.matchPath) {
+      if (pathname.toLowerCase().includes(this.matchPath)) {
         this.onLoad();
       }
     };
