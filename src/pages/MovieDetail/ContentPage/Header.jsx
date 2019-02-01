@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card, CardContent, CardMedia, Typography, Chip, Avatar } from '@material-ui/core';
+import { nowrapStyle } from '@/styles';
 
 const Container = styled(Card)`
   && {
@@ -32,6 +33,7 @@ const HeadContent = styled(CardContent)`
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow: hidden;
     @media (min-width:450px) {
       padding: 20px;
     }
@@ -39,7 +41,7 @@ const HeadContent = styled(CardContent)`
 `;
 const Title = styled(Typography)`
   && {
-    white-space: nowrap;
+    ${nowrapStyle}
     margin-bottom: 5px;
   }
 `;

@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { nowrapStyle } from '@/styles';
 
-const nowrapStyle = css`
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-width: 200px;
-`;
 const Container = styled(Card)`
   && {
     display: flex;
@@ -28,6 +23,7 @@ const Content = styled(CardContent)`
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow: hidden;
   }
 `;
 const TitleWrapper = styled.div`

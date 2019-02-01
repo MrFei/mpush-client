@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { CardMedia } from '@material-ui/core';
+import { nowrapStyle } from '@/styles';
 
-const nowrapStyle = css`
-  white-space: nowrap;  
-  text-overflow: ellipsis; 
-  overflow: hidden;
-  width: calc(100% - 20px);
-`;
 const Container = styled.div`
   display: flex;
   width: 100%;
@@ -23,6 +18,7 @@ const Image = styled(CardMedia)`
 const Content = styled.div`
   padding: 8px;
   width: 100%;
+  overflow: hidden;
 `;
 const Title = styled.h6`
   ${nowrapStyle}
