@@ -7,8 +7,10 @@ import { nowrapStyle } from '@/styles';
 const Container = styled(Card)`
   && {
     display: flex;
-    width: 400px;
+    margin: 5px;
     height: 180px;
+    flex-basis: 400px;
+    flex-grow: 1;
     cursor: pointer;
   }
 `;

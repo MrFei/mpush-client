@@ -10,10 +10,6 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const StyledCard = styled(Card)`
-  margin: 5px;
-`;
-
 @observer
 class ListPC extends React.Component {
   static propTypes = {
@@ -25,7 +21,7 @@ class ListPC extends React.Component {
     const { data, onItemClick } = this.props;
     return (
       <Container>
-        {data.map(item => <StyledCard key={item.movieId} movieInfo={item} onClick={() => onItemClick(item.movieId)} />)}
+        {data.map(item => <Card key={item.movieId} movieInfo={item} onClick={() => onItemClick(item.movieId)} />)}
       </Container>
     );
   }
