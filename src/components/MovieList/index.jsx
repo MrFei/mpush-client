@@ -111,7 +111,7 @@ class MovieList extends React.Component {
     const { loadMore, moreLoading } = this.props.listStore;
     if (this.scrollRef.current && !moreLoading) {
       const { scrollHeight, scrollTop, clientHeight } = this.scrollRef.current;
-      if (Math.abs(clientHeight - scrollHeight + scrollTop) < 10) {
+      if (scrollHeight - scrollTop - clientHeight < 200) {
         loadMore();
       }
     }
