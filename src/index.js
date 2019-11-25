@@ -9,15 +9,16 @@ import { loadTrackScript } from '@/utils/baiduTrack';
 import '@/configs/libs';
 
 /* eslint-disable react/jsx-filename-extension */
-ReactDOM.render((
+ReactDOM.render(
   <React.Fragment>
     <Normalize />
     <GlobalStyle />
     <Provider>
       <App />
     </Provider>
-  </React.Fragment>
-), document.getElementById('root'));
+  </React.Fragment>,
+  document.getElementById('root')
+);
 
 if (process.env.NODE_ENV !== 'development') {
   loadTrackScript();

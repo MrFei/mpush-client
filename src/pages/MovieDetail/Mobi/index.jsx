@@ -36,7 +36,7 @@ class MobiDetail extends React.Component {
       loading: PropTypes.bool,
       errorMsg: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   render() {
     const { onClose } = this.props;
@@ -52,12 +52,14 @@ class MobiDetail extends React.Component {
               {!loading && data ? data.title : ''}
             </Title>
             <Grow />
-            {!loading && data && <Button color="inherit" component="a" target="_blank" href={`https://m.douban.com/movie/subject/${data.movieId}`}>豆瓣</Button>}
+            {!loading && data && (
+              <Button color="inherit" component="a" target="_blank" href={`https://m.douban.com/movie/subject/${data.movieId}`}>
+                豆瓣
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
-        <Content>
-          {this.renderContent()}
-        </Content>
+        <Content>{this.renderContent()}</Content>
       </Container>
     );
   }
@@ -71,7 +73,7 @@ class MobiDetail extends React.Component {
       return <PageLoading>正在获取电影详情</PageLoading>;
     }
     return <ContentPage data={data} />;
-  }
+  };
 }
 
 export default MobiDetail;

@@ -57,7 +57,7 @@ class MovieList extends React.Component {
       allLoaded: PropTypes.bool,
       errorMsg: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -83,8 +83,12 @@ class MovieList extends React.Component {
     const { isMobile } = this.props.appStore;
     return (
       <ScrollContainer onScroll={this.onScroll} ref={this.scrollRef}>
-        {pageLoading ? <PageLoading>正在获取电影列表</PageLoading> : (
-          isMobile ? <ListMobi data={data} onItemClick={this.onItemClick} /> : <ListPC data={data} onItemClick={this.onItemClick} />
+        {pageLoading ? (
+          <PageLoading>正在获取电影列表</PageLoading>
+        ) : isMobile ? (
+          <ListMobi data={data} onItemClick={this.onItemClick} />
+        ) : (
+          <ListPC data={data} onItemClick={this.onItemClick} />
         )}
         {moreLoading && (
           <MoreLoading>
@@ -96,12 +100,7 @@ class MovieList extends React.Component {
             <span>已全部加载</span>
           </MoreLoading>
         )}
-        <MsgBar
-          open={!!errorMsg}
-          message={errorMsg}
-          button="重试"
-          onButtonClick={loadMore}
-        />
+        <MsgBar open={!!errorMsg} message={errorMsg} button="重试" onButtonClick={loadMore} />
         <Route path={`${this.props.match.url}/detail/:movieId`} component={MovieDetail} />
       </ScrollContainer>
     );
@@ -115,16 +114,16 @@ class MovieList extends React.Component {
         loadMore();
       }
     }
-  }
+  };
 
-  onItemClick = (movieId) => {
+  onItemClick = movieId => {
     const { history, match } = this.props;
     if (match.path === '/coming') {
       openURLNewTab(`https://m.douban.com/movie/subject/${movieId}`);
     } else {
       history.push(`${match.url}/detail/${movieId}`);
     }
-  }
+  };
 }
 
 export default MovieList;

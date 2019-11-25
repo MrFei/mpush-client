@@ -8,12 +8,10 @@ import MovieList from '@/components/MovieList';
 class MonitorList extends React.Component {
   static propTypes = {
     monitorStore: PropTypes.object.isRequired,
-  }
+  };
 
   render() {
-    return (
-      <MovieList listStore={this.props.monitorStore} />
-    );
+    return <MovieList listStore={this.props.monitorStore} />;
   }
 }
 

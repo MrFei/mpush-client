@@ -5,7 +5,6 @@ import theme from '@/context/theme';
 import { Snackbar, Button, IconButton } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 
-
 const CloseButton = styled(IconButton)`
   && {
     padding: ${theme.spacing.unit / 2}px;
@@ -19,14 +18,14 @@ class SimpleSnackbar extends React.Component {
     dismiss: PropTypes.bool,
     onButtonClick: PropTypes.func,
     message: PropTypes.string.isRequired,
-  }
+  };
 
   static defaultProps = {
     open: false,
     button: '',
     dismiss: false,
     onButtonClick: () => {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -63,12 +62,7 @@ class SimpleSnackbar extends React.Component {
                 {button}
               </Button>
             ),
-            <CloseButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              onClick={this.handleClose}
-            >
+            <CloseButton key="close" aria-label="Close" color="inherit" onClick={this.handleClose}>
               <CloseIcon />
             </CloseButton>,
           ]}
@@ -80,7 +74,7 @@ class SimpleSnackbar extends React.Component {
   onButtonClick = () => {
     this.props.onButtonClick();
     this.handleClose();
-  }
+  };
 
   handleClose = (event, reason) => {
     if (reason === 'clickaway' || (!this.props.dismiss && reason === 'timeout')) {

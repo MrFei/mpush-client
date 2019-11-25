@@ -29,7 +29,7 @@ const Message = styled.div`
 class SearchList extends React.Component {
   static propTypes = {
     searchStore: PropTypes.object.isRequired,
-  }
+  };
 
   render() {
     const { searchStore } = this.props;
@@ -41,9 +41,7 @@ class SearchList extends React.Component {
         </Message>
       );
     }
-    return (
-      <MovieList listStore={searchStore} />
-    );
+    return <MovieList listStore={searchStore} />;
   }
 }
 

@@ -8,12 +8,10 @@ import MovieList from '@/components/MovieList';
 class ResourceList extends React.Component {
   static propTypes = {
     resourceStore: PropTypes.object.isRequired,
-  }
+  };
 
   render() {
-    return (
-      <MovieList listStore={this.props.resourceStore} />
-    );
+    return <MovieList listStore={this.props.resourceStore} />;
   }
 }
 

@@ -13,14 +13,16 @@ class Routes extends React.Component {
       menus: PropTypes.array,
       defaultPath: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   render() {
     const { menus, defaultPath } = this.props.appStore;
     return (
       <Switch>
-        <Route exact path="/" render={() => (<Redirect to={defaultPath} />)} />
-        {menus.map(menu => <Route key={menu.path} path={menu.path} component={menu.component} />)}
+        <Route exact path="/" render={() => <Redirect to={defaultPath} />} />
+        {menus.map(menu => (
+          <Route key={menu.path} path={menu.path} component={menu.component} />
+        ))}
         <Route component={NotFound} />
       </Switch>
     );

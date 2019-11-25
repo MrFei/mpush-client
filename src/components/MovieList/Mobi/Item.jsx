@@ -42,7 +42,7 @@ const Name = styled.span`
   display: inline-block;
   width: 3em;
   &::after {
-    content: ":"
+    content: ':';
   }
 `;
 
@@ -58,7 +58,7 @@ class ListItem extends React.Component {
       pubdate: PropTypes.string,
       genres: PropTypes.array,
     }).isRequired,
-  }
+  };
 
   render() {
     const { onClick } = this.props;

@@ -2,12 +2,12 @@ import { observable, action, flow } from 'mobx';
 import history from '@/context/history';
 
 class Base {
-  @observable data = []
-  @observable pageLoading = false
-  @observable moreLoading = false
-  @observable allLoaded = false
-  @observable scrollPos = 0
-  @observable errorMsg = ''
+  @observable data = [];
+  @observable pageLoading = false;
+  @observable moreLoading = false;
+  @observable allLoaded = false;
+  @observable scrollPos = 0;
+  @observable errorMsg = '';
 
   constructor(matchPath, apiFunc) {
     this.matchPath = matchPath;
@@ -18,14 +18,14 @@ class Base {
   }
 
   init = () => {
-    const callOnload = (pathname) => {
+    const callOnload = pathname => {
       if (pathname.toLowerCase().includes(this.matchPath)) {
         this.onLoad();
       }
     };
     callOnload(history.location.pathname);
     history.listen(({ pathname }) => callOnload(pathname));
-  }
+  };
 
   fetchData = flow(function* fetchList(params) {
     if (this.allLoaded) return;
@@ -48,22 +48,22 @@ class Base {
     }
     this.pageLoading = false;
     this.moreLoading = false;
-  })
+  });
 
   onLoad = () => {
     if (!this.data.length) {
       this.fetchData({ offset: 0 });
     }
-  }
+  };
 
   loadMore = () => {
     this.fetchData({ offset: this.data.length });
-  }
+  };
 
   @action
-  setScrollPos = (pos) => {
+  setScrollPos = pos => {
     this.scrollPos = pos;
-  }
+  };
 }
 
 export default Base;

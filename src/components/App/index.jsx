@@ -56,7 +56,7 @@ class App extends React.Component {
       toggleDrawer: PropTypes.func,
       showNav: PropTypes.bool,
     }).isRequired,
-  }
+  };
 
   render() {
     const { isMobile, showNav, toggleDrawer } = this.props.appStore;
@@ -66,20 +66,11 @@ class App extends React.Component {
         <TopBar />
         <DrawerWrapper>
           {isMobile ? (
-            <SwipeableDrawer
-              disableBackdropTransition
-              open={showNav}
-              onClose={() => toggleDrawer(false)}
-              onOpen={() => toggleDrawer(true)}
-            >
+            <SwipeableDrawer disableBackdropTransition open={showNav} onClose={() => toggleDrawer(false)} onOpen={() => toggleDrawer(true)}>
               <Menu />
             </SwipeableDrawer>
           ) : (
-            <PCDrawer
-              open
-              variant="permanent"
-              classes={{ paper: 'drawer-paper' }}
-            >
+            <PCDrawer open variant="permanent" classes={{ paper: 'drawer-paper' }}>
               <Menu />
             </PCDrawer>
           )}

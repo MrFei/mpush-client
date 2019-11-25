@@ -1,7 +1,19 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Paper, Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@material-ui/core';
+import {
+  Typography,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+  Paper,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+} from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import { openURLNewTab } from '@/utils';
 
@@ -32,16 +44,16 @@ const LinkItem = styled.li`
 class ResInfo extends React.Component {
   static propTypes = {
     resInfo: PropTypes.array,
-  }
+  };
 
   static defaultProps = {
     resInfo: [],
-  }
+  };
 
   state = {
     dialogOpen: false,
     targetURL: '',
-  }
+  };
 
   render() {
     const { resInfo } = this.props;
@@ -61,7 +73,9 @@ class ResInfo extends React.Component {
           <SiteList>
             {resInfo.map(item => (
               <Fragment key={item.website}>
-                <Typography variant="subtitle1" color="textSecondary">{item.website}</Typography>
+                <Typography variant="subtitle1" color="textSecondary">
+                  {item.website}
+                </Typography>
                 <LinkList>
                   {item.findInfo.map(res => (
                     <LinkItem key={res.link}>
@@ -91,9 +105,7 @@ class ResInfo extends React.Component {
         >
           <DialogTitle id="alert-dialog-title">访问网站</DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              即将访问: {this.state.targetURL}
-            </DialogContentText>
+            <DialogContentText id="alert-dialog-description">即将访问: {this.state.targetURL}</DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
@@ -108,21 +120,21 @@ class ResInfo extends React.Component {
     );
   }
 
-  onLinkClick = (link) => {
+  onLinkClick = link => {
     this.setState({
       dialogOpen: true,
       targetURL: link,
     });
-  }
+  };
 
   handleClose = () => {
     this.setState({ dialogOpen: false });
-  }
+  };
 
   openURL = () => {
     openURLNewTab(this.state.targetURL);
     this.handleClose();
-  }
+  };
 }
 
 export default ResInfo;

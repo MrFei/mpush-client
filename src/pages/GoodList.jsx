@@ -8,12 +8,10 @@ import MovieList from '@/components/MovieList';
 class GoodList extends React.Component {
   static propTypes = {
     goodStore: PropTypes.object.isRequired,
-  }
+  };
 
   render() {
-    return (
-      <MovieList listStore={this.props.goodStore} />
-    );
+    return <MovieList listStore={this.props.goodStore} />;
   }
 }
 

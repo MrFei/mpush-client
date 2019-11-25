@@ -6,11 +6,11 @@ import history from '@/context/history';
 const isMobile = () => window.innerWidth < 600;
 
 class App {
-  menus = menuConfig
+  menus = menuConfig;
   @observable isMobile = isMobile();
-  @observable showNav = false
-  @observable currMenu = {}
-  @observable topTitle = ''
+  @observable showNav = false;
+  @observable currMenu = {};
+  @observable topTitle = '';
 
   constructor() {
     window.addEventListener('resize', throttle(this.updateMobile, 500));
@@ -19,9 +19,9 @@ class App {
   }
 
   @action
-  toggleDrawer = (open) => {
+  toggleDrawer = open => {
     this.showNav = open;
-  }
+  };
 
   @action
   updateMobile = () => {
@@ -33,18 +33,20 @@ class App {
       this.isMobile = false;
       this.toggleDrawer(false);
     }
-  }
+  };
 
   @action
   updateCurrMenu = () => {
-    const { location: { pathname } } = history;
+    const {
+      location: { pathname },
+    } = history;
     const currMenu = this.menus.find(menu => new RegExp(`^${menu.path}`, 'i').test(pathname));
     if (currMenu) {
       this.currMenu = currMenu;
       this.topTitle = currMenu.name;
       this.toggleDrawer(false);
     }
-  }
+  };
 
   @computed
   get defaultPath() {

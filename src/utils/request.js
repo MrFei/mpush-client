@@ -6,7 +6,7 @@ const myAxios = axios.create({
   timeout: 10000,
 });
 
-const request = async (config) => {
+const request = async config => {
   try {
     const { data, status } = await myAxios(config);
     if (status !== 200) {

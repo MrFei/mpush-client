@@ -12,7 +12,7 @@ class Menu extends React.Component {
     appStore: PropTypes.shape({
       currMenu: PropTypes.object,
     }).isRequired,
-  }
+  };
 
   render() {
     const { currMenu } = this.props.appStore;
@@ -22,13 +22,7 @@ class Menu extends React.Component {
         <Divider />
         <List>
           {menuConfig.map(menu => (
-            <ListItem
-              button
-              key={menu.name}
-              component={Link}
-              to={menu.path}
-              selected={menu.name === currMenu.name}
-            >
+            <ListItem button key={menu.name} component={Link} to={menu.path} selected={menu.name === currMenu.name}>
               {React.createElement(menu.icon)}
               <ListItemText primary={menu.name} />
             </ListItem>

@@ -20,7 +20,9 @@ const Message = styled.div`
 const NotFound = () => (
   <Message>
     <BadIcon />
-    <Typography component="h4" variant="h4">404 Not Found</Typography>
+    <Typography component="h4" variant="h4">
+      404 Not Found
+    </Typography>
   </Message>
 );
 

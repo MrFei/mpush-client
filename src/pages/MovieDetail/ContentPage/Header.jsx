@@ -9,7 +9,7 @@ const Container = styled(Card)`
     display: flex;
     width: 100%;
     height: 130px;
-    @media (min-width:450px) {
+    @media (min-width: 450px) {
       height: 160px;
     }
   }
@@ -19,10 +19,10 @@ const HeadImage = styled(CardMedia)`
     flex: 0 0;
     flex-basis: 90px;
     height: auto;
-    @media (max-width:300px) {
+    @media (max-width: 300px) {
       display: none;
     }
-    @media (min-width:450px) {
+    @media (min-width: 450px) {
       flex-basis: 110px;
     }
   }
@@ -34,7 +34,7 @@ const HeadContent = styled(CardContent)`
     flex-direction: column;
     width: 100%;
     overflow: hidden;
-    @media (min-width:450px) {
+    @media (min-width: 450px) {
       padding: 20px;
     }
   }
@@ -58,16 +58,17 @@ const Header = ({ data }) => {
     <Container>
       <HeadImage image={image} title={title} />
       <HeadContent>
-        <Title variant="title" color="textPrimary">{title}</Title>
-        {originalTitle !== title && <Title variant="subtitle1" color="textSecondary">{originalTitle}</Title>}
+        <Title variant="title" color="textPrimary">
+          {title}
+        </Title>
+        {originalTitle !== title && (
+          <Title variant="subtitle1" color="textSecondary">
+            {originalTitle}
+          </Title>
+        )}
         <RatingWrapper>
           <Rating>
-            <Chip
-              label={ratingsCount}
-              avatar={<Avatar>{rating}</Avatar>}
-              color="primary"
-              variant="outlined"
-            />
+            <Chip label={ratingsCount} avatar={<Avatar>{rating}</Avatar>} color="primary" variant="outlined" />
           </Rating>
         </RatingWrapper>
       </HeadContent>

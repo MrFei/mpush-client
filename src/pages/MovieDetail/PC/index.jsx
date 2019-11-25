@@ -35,7 +35,7 @@ class PCDetail extends React.Component {
       loading: PropTypes.bool,
       errorMsg: PropTypes.string,
     }).isRequired,
-  }
+  };
 
   render() {
     const { onClose } = this.props;
@@ -54,9 +54,7 @@ class PCDetail extends React.Component {
             </Toolbar>
           </AppBar>
         </Title>
-        <Content>
-          {this.renderContent()}
-        </Content>
+        <Content>{this.renderContent()}</Content>
       </Fragment>
     );
   }
@@ -70,7 +68,7 @@ class PCDetail extends React.Component {
       return <PageLoading height="300px">正在获取电影详情</PageLoading>;
     }
     return <ContentPage data={data} />;
-  }
+  };
 }
 
 export default PCDetail;

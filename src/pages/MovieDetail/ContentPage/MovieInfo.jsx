@@ -74,7 +74,7 @@ const MovieInfo = ({ data }) => (
     </ExpansionPanelSummary>
     <ExpansionPanelDetails>
       <InfoItem>
-        {infoTable.map((item) => {
+        {infoTable.map(item => {
           const v = data[item.key];
           const value = Array.isArray(v) ? v : [v];
           return (
@@ -82,7 +82,9 @@ const MovieInfo = ({ data }) => (
               <dt>{item.name}</dt>
               <dd>
                 <ul>
-                  {value.map(d => <li key={d}>{d}</li>)}
+                  {value.map(d => (
+                    <li key={d}>{d}</li>
+                  ))}
                 </ul>
               </dd>
             </dl>

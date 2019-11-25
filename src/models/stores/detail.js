@@ -4,17 +4,17 @@ import appConfig from '@/configs/app';
 import history from '@/context/history';
 
 class Detail {
-  @observable loading = false
-  @observable errorMsg = ''
-  @observable data
-  cache = {}
+  @observable loading = false;
+  @observable errorMsg = '';
+  @observable data;
+  cache = {};
 
   constructor() {
     this.init();
   }
 
   init = () => {
-    const callOnload = (pathname) => {
+    const callOnload = pathname => {
       const res = pathname.match(/detail\/(\d+)/);
       if (res && parseInt(res[1], 10)) {
         this.onPageLoad(res[1]);
@@ -22,11 +22,11 @@ class Detail {
     };
     callOnload(history.location.pathname);
     history.listen(({ pathname }) => callOnload(pathname));
-  }
+  };
 
   onPageLoad = flow(function* fetchDetail(movieId) {
     const cacheData = this.cache[movieId];
-    if (cacheData && (Date.now() - cacheData.updatedAt) < appConfig.cacheTime * 1000) {
+    if (cacheData && Date.now() - cacheData.updatedAt < appConfig.cacheTime * 1000) {
       this.data = cacheData.data;
     } else {
       this.loading = true;
@@ -44,7 +44,7 @@ class Detail {
       }
       this.loading = false;
     }
-  })
+  });
 }
 
 export default new Detail();

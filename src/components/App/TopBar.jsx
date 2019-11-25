@@ -41,14 +41,14 @@ const Search = styled.div`
   border-radius: ${theme.shape.borderRadius}px;
   background-color: ${fade(theme.palette.common.white, 0.15)};
   margin-left: 0;
-  &:hover{
+  &:hover {
     background-color: ${fade(theme.palette.common.white, 0.25)};
   }
   ${theme.breakpoints.up('sm')} {
     margin-left: ${theme.spacing.unit}px;
     width: auto;
   }
-  .input-container{
+  .input-container {
     color: inherit;
     width: 100%;
   }
@@ -87,7 +87,7 @@ class TopBar extends React.Component {
     searchStore: PropTypes.shape({
       execSearch: PropTypes.func,
     }).isRequired,
-  }
+  };
 
   render() {
     const { topTitle, toggleDrawer } = this.props.appStore;
@@ -95,11 +95,7 @@ class TopBar extends React.Component {
       <Container>
         <AppBar position="fixed">
           <Toolbar>
-            <MenuButton
-              color="inherit"
-              aria-label="Open Drawer"
-              onClick={() => toggleDrawer(true)}
-            >
+            <MenuButton color="inherit" aria-label="Open Drawer" onClick={() => toggleDrawer(true)}>
               <MenuIcon />
             </MenuButton>
             <Title variant="h6" color="inherit" noWrap>
@@ -125,14 +121,14 @@ class TopBar extends React.Component {
     );
   }
 
-  onSearch = (evt) => {
+  onSearch = evt => {
     if (evt.key === 'Enter') {
       const keyword = evt.target.value;
       if (keyword) {
         this.props.searchStore.execSearch(keyword);
       }
     }
-  }
+  };
 }
 
 export default TopBar;

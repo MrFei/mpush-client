@@ -25,18 +25,12 @@ class MovieDetail extends React.Component {
     appStore: PropTypes.shape({
       isMobile: PropTypes.bool,
     }).isRequired,
-  }
+  };
 
   render() {
     const { isMobile } = this.props.appStore;
     return (
-      <Dialog
-        open
-        fullWidth
-        scroll="paper"
-        fullScreen={isMobile}
-        aria-labelledby="dialog-title"
-      >
+      <Dialog open fullWidth scroll="paper" fullScreen={isMobile} aria-labelledby="dialog-title">
         {isMobile ? <DetailMobi onClose={this.onClose} /> : <DetailPC onClose={this.onClose} />}
       </Dialog>
     );
@@ -46,7 +40,7 @@ class MovieDetail extends React.Component {
     const { history, match } = this.props;
     const baseUrl = match.path.replace('/detail/:movieId', '');
     history.push(baseUrl);
-  }
+  };
 }
 
 export default MovieDetail;

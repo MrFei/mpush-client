@@ -46,7 +46,7 @@ const Name = styled.span`
   display: inline-block;
   width: 3em;
   &::after {
-    content: ":"
+    content: ':';
   }
 `;
 
@@ -65,7 +65,7 @@ class MovieCard extends React.Component {
       countries: PropTypes.array,
       durations: PropTypes.array,
     }).isRequired,
-  }
+  };
 
   render() {
     const { className, onClick } = this.props;
@@ -75,10 +75,18 @@ class MovieCard extends React.Component {
         <Image image={image} title={title} />
         <Content>
           <TitleWrapper>
-            <Title component="h6" variant="h6" title={title}>{title}</Title>
-            <Typography variant="subtitle1" color="textSecondary">{rating}</Typography>
+            <Title component="h6" variant="h6" title={title}>
+              {title}
+            </Title>
+            <Typography variant="subtitle1" color="textSecondary">
+              {rating}
+            </Typography>
           </TitleWrapper>
-          {originalTitle !== title && <Title variant="subtitle1" color="textSecondary" title={originalTitle}>{originalTitle}</Title>}
+          {originalTitle !== title && (
+            <Title variant="subtitle1" color="textSecondary" title={originalTitle}>
+              {originalTitle}
+            </Title>
+          )}
           <Detail>
             <Item>
               <Name>上映</Name>

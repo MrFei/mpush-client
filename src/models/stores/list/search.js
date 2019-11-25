@@ -10,7 +10,7 @@ class Search extends Base {
   }
 
   @action
-  execSearch = (keyword) => {
+  execSearch = keyword => {
     history.push('/search');
     this.keyword = keyword;
     this.data = [];
@@ -20,14 +20,14 @@ class Search extends Base {
       keyword: this.keyword,
       offset: 0,
     });
-  }
+  };
 
   loadMore = () => {
     this.fetchData({
       keyword: this.keyword,
       offset: this.data.length,
     });
-  }
+  };
 }
 
 export default new Search();
